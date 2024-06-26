@@ -2,12 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class DevMedicoAplicacao {
+    private List<Medico> medicos;
+    private Scanner scanner;
 
-    private static List<Medico> medicos = new ArrayList<>();
+    public DevMedicoAplicacao() {
+        this.medicos = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+    }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public void executar() {
         Operacao operacao = null;
 
         while (operacao != Operacao.SAIR) {
@@ -24,7 +28,7 @@ public class Main {
 
             switch (operacao) {
                 case ADICIONAR:
-                    adicionarMedico(scanner);
+                    adicionarMedico();
                     break;
                 case LISTAR:
                     listarMedicos();
@@ -38,14 +42,14 @@ public class Main {
         scanner.close();
     }
 
-    private static void exibirMenu() {
+    private void exibirMenu() {
         System.out.println("Selecione uma operação:");
         System.out.println("1 - Adicionar Médico");
         System.out.println("2 - Listar Médicos");
         System.out.println("3 - Sair");
     }
 
-    private static void adicionarMedico(Scanner scanner) {
+    private void adicionarMedico() {
         System.out.println("Digite o nome do médico:");
         String nome = scanner.nextLine();
         System.out.println("Digite o CRM do médico:");
@@ -63,7 +67,7 @@ public class Main {
         System.out.println("Médico adicionado com sucesso!");
     }
 
-    private static void listarMedicos() {
+    private void listarMedicos() {
         if (medicos.isEmpty()) {
             System.out.println("Nenhum médico cadastrado.");
         } else {
@@ -74,4 +78,3 @@ public class Main {
         }
     }
 }
-
