@@ -49,6 +49,14 @@ public class DevMedicoAplicacao {
         String nome = scanner.nextLine();
         System.out.println("Digite o CRM do médico:");
         String crm = scanner.nextLine();
+
+        boolean crmExistente = medicos.stream().anyMatch(medico -> medico.getCrm().equals(crm));
+
+        if (crmExistente) {
+            System.out.println("\n\nErro: CRM já cadastrado para outro médico. Médico não adicionado.\n\n");
+            return;
+        }
+
         System.out.println("Digite a idade do médico:");
         int idade = scanner.nextInt();
         scanner.nextLine(); // Consome a nova linha
