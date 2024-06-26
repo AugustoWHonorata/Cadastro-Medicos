@@ -4,20 +4,21 @@ import java.util.Scanner;
 
 public class DevMedicoAplicacao {
     private List<Medico> medicos;
+    private MedicoCLI medicoCLI;
     private Scanner scanner;
 
     public DevMedicoAplicacao() {
         this.medicos = new ArrayList<>();
         this.scanner = new Scanner(System.in);
+        this.medicoCLI = new MedicoCLI();
     }
 
     public void executar() {
         Operacao operacao = null;
 
         while (operacao != Operacao.SAIR) {
-            exibirMenu();
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consome a nova linha
+            medicoCLI.exibirMenu();
+            int opcao = medicoCLI.lerOpcao();
 
             try {
                 operacao = Operacao.values()[opcao - 1];
@@ -42,12 +43,6 @@ public class DevMedicoAplicacao {
         scanner.close();
     }
 
-    private void exibirMenu() {
-        System.out.println("Selecione uma operação:");
-        System.out.println("1 - Adicionar Médico");
-        System.out.println("2 - Listar Médicos");
-        System.out.println("3 - Sair");
-    }
 
     private void adicionarMedico() {
         System.out.println("Digite o nome do médico:");
